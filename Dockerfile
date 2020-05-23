@@ -3,7 +3,7 @@ LABEL maintainer="Jeff Geerling"
 
 ENV DEBIAN_FRONTEND noninteractive
 
-ENV pip_packages "ansible cryptography mitogen"
+ENV pip_packages "ansible cryptography"
 
 # Install dependencies.
 RUN apt-get update \
@@ -28,8 +28,7 @@ RUN rm -f /lib/systemd/system/systemd*udev* \
 
 # Install Ansible inventory file.
 RUN mkdir -p /etc/ansible
-RUN echo "[local]\nlocalhost ansible_connection=local" > /etc/ansible/hosts && \
-    echo "[defaults]\nstrategy_plugins = $(pip show mitogen | grep Location | cut -d' ' -f2)/ansible_mitogen/plugins/strategy\nstrategy = mitogen_linear" > /etc/ansible/ansible.cfg
+RUN echo "[local]\nlocalhost ansible_connection=local" > /etc/ansible/hosts
 
 
 # Make sure systemd doesn't start agettys on tty[1-6].
