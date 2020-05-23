@@ -1,3 +1,3 @@
 #!/bin/bash -
-docker build -t geerlingguy/docker-debian9-ansible .
+docker build -t opscharlie/docker-debian9-ansible .
 
